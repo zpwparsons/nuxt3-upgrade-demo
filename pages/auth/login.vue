@@ -14,7 +14,7 @@ const handleLogin = () => {
     submitRequest(
         login(form),
         () => {
-            navigateTo({ name: 'jobs' });
+            navigateTo({ name: 'jobs' }, { replace: true });
         },
         (validationErrors) => {
             console.log(validationErrors);

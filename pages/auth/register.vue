@@ -17,7 +17,7 @@ const handleRegistration = () => {
     submitRequest(
         register(form),
         () => {
-            navigateTo({ name: 'jobs' });
+            navigateTo({ name: 'jobs' }, { replace: true });
         },
         (validationErrors) => {
             console.log(validationErrors);
