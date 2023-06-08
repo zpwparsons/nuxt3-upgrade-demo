@@ -12,14 +12,14 @@ export const useAuth = () => {
         }
     }
 
-    async function login(credentials) {
+    async function login(credentials: object) {
         if (isLoggedIn.value) return;
 
         await $larafetch('/login', { method: 'post', body: credentials });
         await refresh();
     }
 
-    async function register(credentials) {
+    async function register(credentials: object) {
         await $larafetch('/register', { method: 'post', body: credentials });
         await refresh();
     }
@@ -35,18 +35,18 @@ export const useAuth = () => {
 
         await $larafetch('/logout', { method: 'post' });
 
-        router.push('/');
         user.value = null;
+        await router.push('/');
     }
 
-    async function forgotPassword(email) {
+    async function forgotPassword(email: object) {
         return await $larafetch<{ status: string }>('/forgot-password', {
             method: 'post',
             body: { email },
         });
     }
 
-    async function resetPassword(credentials) {
+    async function resetPassword(credentials: object) {
         return await $larafetch<{ status: string }>('/reset-password', {
             method: 'post',
             body: credentials,

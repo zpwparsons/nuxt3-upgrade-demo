@@ -30,10 +30,14 @@ export async function $larafetch<T, R extends ResponseType = 'json'>(
 
 
     // On client initiate a csrf request and get it from the cookie set by laravel
-    if (process.client && ['post', 'delete', 'put', 'patch'].includes(options?.method?.toLowerCase())) {
+    if (
+        process.client
+        && ['post', 'delete', 'put', 'patch'].includes(options?.method?.toLowerCase() as string)
+    ) {
         await initCsrf();
 
-        // Cannot use nuxt composables such as useCookie after an async operation: https://github.com/nuxt/framework/issues/5238
+        // Cannot use nuxt composables such as useCookie after an async operation:
+        // https://github.com/nuxt/framework/issues/5238
         token = getCookie(CSRF_COOKIE);
     }
 
@@ -69,11 +73,11 @@ export async function $larafetch<T, R extends ResponseType = 'json'>(
     } catch (error) {
         if (!(error instanceof FetchError)) throw error;
 
-        if (redirectIfNotAuthenticated && [401, 419].includes(error?.response?.status)) {
+        if (redirectIfNotAuthenticated && [401, 419].includes(error?.response?.status as number)) {
             await navigateTo('/');
         }
 
-        if (redirectIfNotVerified && [409].includes(error?.response?.status)) {
+        if (redirectIfNotVerified && [409].includes(error?.response?.status as number)) {
             await navigateTo('/auth/verify');
         }
 
