@@ -1,11 +1,5 @@
 import { FetchError } from 'ofetch';
-
-type User = {
-    name: string;
-    email?: string;
-    permission: string;
-    email_verified_at: string;
-};
+import User from "~/interfaces/User";
 
 // Value is initialized in: ~/plugins/auth.ts
 export const useUser = () => {
