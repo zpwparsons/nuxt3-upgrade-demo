@@ -23,13 +23,13 @@ pnpm dev -o
 Build the application for production:
 
 ```bash
-pnpm build
+npm run build
 ```
 
 Locally preview production build:
 
 ```bash
-pnpm preview
+npm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
